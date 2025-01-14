@@ -302,12 +302,8 @@ export class SerialPortStream<T extends BindingInterface = BindingInterface> ext
     this.port.read(pool, start, toRead).then(
       ({ bytesRead }) => {
         debug('binding.read', 'finished', { bytesRead })
-        // zero bytes means read means we've hit EOF? Maybe this should be an error
-        if (bytesRead === 0) {
-          debug('binding.read', 'Zero bytes read closing readable stream')
-          this.push(null)
-          return
-        }
+        // Removed this to make it work on windows 8 emulator, don't know if this is a problem in real life situation on windows 8 but in emulators
+        // it works to read the serial port with other software but this blocks it for this library
         pool.used += bytesRead
         this.push(pool.slice(start, start + bytesRead))
       },
