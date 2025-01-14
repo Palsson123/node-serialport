@@ -12,7 +12,6 @@
     "format": "eslint --fix",
     "lint": "eslint",
     "outdated": "lerna exec --no-bail npm outdated && npm outdated",
-    "publish": "lerna publish --exact",
     "test:arduino": "TEST_PORT=$(./bin/find-arduino.ts) npm test",
     "test:watch": "mocha -w",
     "test": "nyc --reporter lcov --reporter text mocha",
